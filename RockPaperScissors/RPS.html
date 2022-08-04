@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body>
+
+</body>
+<script>
+    let player1 = prompt('Player 1 Name: ');                       //Create a prompt for player names
+    let player2 = prompt('Player 2 Name: ');
+
+    let player1WinCount = 0;                                //track player win count
+    let player2WinCount = 0;
+
+    let roundCount = 0;
+
+function game() {                                                   //function to loop game for five rounds
+    for (let i=0; i<=5; i++) {
+        roundCount++;
+        console.log(`Round ${roundCount}!`);
+        playRound();
+        if (roundCount == 5) {
+            return `Game over! Final Score is ${player1}:${player1WinCount} - ${player2}:${player2WinCount}`;
+        }
+    }
+}
+
+function playRound() {          //function to play rock, paper, scissors. Taking player selections as parameters
+
+    let choiceP1 = prompt(`${player1} pick: Rock, Paper, or Scissors.`);    //Ask for player choices
+    let choiceP2 = prompt(`${player2} pick: Rock, Paper, or Scissors.`);
+    
+    let player1Select = choiceP1.toLowerCase();                     //Change player answers to lowercase
+    let player2Select = choiceP2.toLowerCase();
+
+
+    if (player1Select == 'rock') {                          //if statements for each player 1 selections of rock, paper, scissors.
+        if (player2Select == 'paper') {                        //nested if statements within each player 1 selection. player 2 gets the same selections
+            player2WinCount++;
+            console.log(`Paper beats Rock. ${player2} wins!`);
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else if (player2Select == 'scissors') {
+            player1WinCount++;
+            console.log(`Rock beats Scissors. ${player1} wins!`);
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else if (player1Select == 'rock') {
+            console.log("Both players chose Rock. It's a Tie!");
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else {
+            console.log("Player 2 must choose: Rock, Paper, or Scissors.");
+        }
+    } else if (player1Select == 'paper') {
+        if (player2Select == 'rock') {
+            player1WinCount++;
+            console.log(`Paper beats Rock. ${player1} wins!`);
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else if (player2Select == 'scissors') {
+            player2WinCount++;
+            console.log(`Scissors beats Paper. ${player2} wins!`);
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else if (player2Select == 'paper') {
+            console.log("Both players chose Paper. It's a Tie!");
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else {
+            console.log("Player 2 must choose: Rock, Paper, or Scissors.");
+        }
+    } else if (player1 == 'scissors') {
+        if (player2Select == 'rock') {
+            player2WinCount++;
+            console.log(`Rock beats scissors. ${player2} wins!`);
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else if (player2Select == 'paper') {
+            player1WinCount++;
+            console.log(`Scissors beats paper. ${player1} wins!`);
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else if (player2Select == 'scissors') {
+            console.log("Both players chose Scissors. It's a Tie!");
+            console.log(`${player1}:${player1WinCount} - ${player2}:${player2WinCount}`);
+        } else {
+            console.log("Player 2 must choose: Rock, Paper, or Scissors.");
+        }
+    } else {                                                                //console.log( if player 1 doesn't select rock, paper, or scissors
+        console.log("Player 1 must choose: Rock, Paper, or Scissors.");
+    }
+}
+   
+
+   //console.log(`${player1} chose ${player1Select}. ${player2} chose ${player2Select}.`);
+   //console.log(game(playRound(player1Select,player2Select)));
+   //console.log(playRound(player1Select,player2Select));
+
+   console.log(game());
+
+
+
+
+</script>
+</html>

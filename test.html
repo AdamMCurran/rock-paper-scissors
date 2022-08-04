@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body>
+
+</body>
+<script>
+
+const ftoc = function(tempFahr) {
+    let celc = (tempFahr - 32) * (5/9);
+    return celc.toFixed(1); 
+};
+
+const ctof = function(tempCelc) {
+    let fahr = (tempCelc * (9/5)) + 32;
+    return fahr.toFixed(1);
+};
+
+console.log(ftoc(32));
+console.log(ftoc(100));
+console.log(ftoc(-100));
+
+console.log(ctof(0));
+console.log(ctof(73.2));
+console.log(ctof(-10));
+
+
+// i assignment, flipping variables
+/*
+
+const sumAll = function(min, max) {
+  if (!Number.isInteger(min) || !Number.isInteger(max)) return "ERROR";
+  if (min < 0 || max < 0) return "ERROR";
+  if (min > max) {
+    const temp = min;
+    min = max;
+    max = temp;
+  }
+  let sum = 0;
+  for (let i = min; i < max + 1; i++) {
+    sum += i;
+  }
+  return sum;
+};
+
+console.log(sumAll(2,5));
+
+*/
+
+
+
+
+
+</script>
+</html>
