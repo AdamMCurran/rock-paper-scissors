@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="RPS2.css">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <div id="box">
+        <div id="displayResults">
+            <div id="scoringPlayer">
+                <span id="playerScore">PlayerScore: </span>
+                <span id="intPlayer">0</span>
+            </div>
+            <div id="scoringComp">
+                <span id="compScore">CompScore: </span>
+                <span id="intComp">0</span>
+            </div>
+        </div>
+
+        <div id="playerOptions">
+            <button id="playerRock">Rock</button>
+            <button id="playerPaper">Paper</button>
+            <button id="playerScissors">Scissors</button>
+        </div>
+
+        <div id="winnerMessage">winnerMessage</div>
+    </div>
+</body>
+
+<script>
+
+    const playerRock = document.querySelector('#playerRock');                           //click events for each button
+        playerRock.addEventListener("click", function(){playRound('rock'); updateScore();});
+    const playerPaper = document.querySelector('#playerPaper');
+        playerPaper.addEventListener("click", function(){playRound('paper'); updateScore();});
+    const playerScissors = document.querySelector('#playerScissors');
+        playerScissors.addEventListener("click", function(){playRound('scissors'); updateScore();});
+
+    
+function computerChoice () {     //function for random computer choice
+    let randomNum = Math.floor(Math.random()*3);
+    let compChoice;
+    if (randomNum == 0) {
+        compChoice = 'rock';
+    } else if (randomNum == 1){
+        compChoice = 'paper';
+    } else {
+        compChoice = 'scissors';
+    }
+    return compChoice;
+}
+
+
+function rockPaperScissors(playerChoice) {     //function for rock, paper, scissors game
+    let compChoice = computerChoice();
+
+    let playerWin = 'playerWin';
+    let computerWin = 'computerWin';
+    let tie = 'tie';
+
+
+    if (playerChoice == 'rock') {
+        if (compChoice =='paper'){
+            return computerWin;
+        } else if (compChoice == 'scissors') {
+            return playerWin;
+        } else {
+            return tie;
+        }
+    } else if (playerChoice == 'paper') {
+        if (compChoice == 'scissors'){
+            return computerWin;
+        } else if (compChoice == 'rock') {
+            return playerWin;
+        } else {
+            return tie;
+        }
+    } else {
+        if (compChoice == 'rock'){
+            return computerWin;
+        } else if (compChoice == 'paper') {
+            return playerWin;
+        } else {
+            return tie;
+        }
+    } 
+}
+
+
+
+let pScore = 0;
+let compScore = 0;
+
+
+function playRound(btnChoice) { //function to play a round
+    let playerChoice = btnChoice;
+    let result = rockPaperScissors(playerChoice);
+    if (result == 'playerWin') {
+        console.log('playerwin');
+        pScore ++;
+        console.log(pScore);
+    } else if (result == 'computerWin') {
+        console.log('compwin');
+        compScore ++;
+        console.log(compScore);
+    } else {
+        console.log('tie');
+    }   
+}
+
+let winnerMessage = document.querySelector('#winnerMessage');
+let intPlayer = document.querySelector('#intPlayer');
+let intComp = document.querySelector('#intComp');
+
+function updateScore() {
+    intPlayer.innerHTML = pScore;
+    intComp.innerHTML = compScore;
+
+    if (pScore == 5) {
+        winnerMessage.innerHTML = 'Player Wins!'
+    } else if (compScore == 5) {
+        winnerMessage.innerHTML = 'Computer Wins!'
+    }
+}
+
+
+
+function gameScore(btnChoice) {
+
+
+    let result = playRound(btnChoice);
+    console.log(result);
+
+    for (let i=0; i<=4 ;i++) {
+        let result = rockPaperScissors()
+        if (result == 'playerWin') {
+            pScore ++;
+        } else if (result == 'computerWin') {
+            compScore ++;
+        }
+    }
+
+    if (pScore == 5) {
+        winnerMessage.innerHTML = "Player wins!";
+    } else if (compScore == 5) {
+        winnerMessage.innerHTML = "Computer wins!";
+    }
+}
+
+function totalScore() {
+    let totalScore = gameScore()
+
+}
+
+
+</script>
+
+</html>

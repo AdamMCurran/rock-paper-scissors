@@ -6,11 +6,34 @@
     <style></style>
 </head>
 <body>
+    <h1>
+        <div></div>
+    </h1>
+    
+    <div id="playerOptions">
+        <button id="playerRock">Rock</button>
+        <button id="playerPaper">Paper</button>
+        <button id="playerScissors">Scissors</button>
+
+    </div>
+
+
+
+
+
+
+
+
+
 
 </body>
 <script>
-    let player1 = prompt('Player 1 Name: ');                       //Create a prompt for player names
-    let player2 = prompt('Player 2 Name: ');
+
+const playerRock = document.querySelector('playerRock');
+    playerRock.onclick = 
+
+    //let player1 = prompt('Player 1 Name: ');                       //Create a prompt for player names
+    //let player2 = prompt('Player 2 Name: ');
 
     let player1WinCount = 0;                                //track player win count
     let player2WinCount = 0;
@@ -23,7 +46,7 @@ function game() {                                                   //function t
         console.log(`Round ${roundCount}!`);
         playRound();
         if (roundCount == 5) {
-            return `Game over! Final Score is ${player1}:${player1WinCount} - ${player2}:${player2WinCount}`;
+           return `Game over! Final Score is ${player1}:${player1WinCount} - ${player2}:${player2WinCount}`;
         }
     }
 }
@@ -86,14 +109,6 @@ function playRound() {          //function to play rock, paper, scissors. Taking
         console.log("Player 1 must choose: Rock, Paper, or Scissors.");
     }
 }
-   
-
-   //console.log(`${player1} chose ${player1Select}. ${player2} chose ${player2Select}.`);
-   //console.log(game(playRound(player1Select,player2Select)));
-   //console.log(playRound(player1Select,player2Select));
-
-   console.log(game());
-
 
 
 

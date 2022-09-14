@@ -1,0 +1,38 @@
+body {
+
+}
+
+#box {
+    flex-direction: column;
+    border-style: solid;
+    border-width: 20px;
+    border-color: purple;
+
+}
+
+#displayResults {
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+
+
+}
+
+#playerOptions {
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+
+
+}
+
+#winnerMessage {
+    border-style: solid;
+    border-width: 1px;
+    border-color: green;
+
+
+}
+
+
