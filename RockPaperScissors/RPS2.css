@@ -1,38 +1,113 @@
 body {
-
+    border-style: solid;
+    border-width: 5px;
+    border-color: gray;   
+    overflow: hidden;
+    height: 100%;
+    background-color: #D18B55; 
 }
 
 #box {
     flex-direction: column;
     border-style: solid;
-    border-width: 20px;
+    border-width: 10px;
     border-color: purple;
+    text-align: center;
+    margin-top: 5%;
+
 
 }
 
+img {
+    width: 90%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.image {
+    background-position: center;
+    border: none;
+    background-color: white;
+    width: 20%;
+    margin: 0 auto;
+
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;   
+}
+
+.image:hover {opacity: 1;}
+
 #displayResults {
     display: flex;
+    margin: 0 auto;
+    margin-bottom: 10%;
     border-style: solid;
-    border-width: 1px;
+    border-width: 5px;
     border-color: red;
+    text-align: center;
+    font-size: 58px;
+    color: aliceblue;
+    background-color: #230b05;
 
+}
 
+#scoringPlayer {
+    margin: 0 auto;
+    border-style: solid;
+    border-width: 3px;
+    border-color: pink;
+}
+
+#scoringComp {
+    margin: 0 auto;
+    border-style: solid;
+    border-width: 3px;
+    border-color: magenta;
 }
 
 #playerOptions {
     border-style: solid;
-    border-width: 1px;
+    border-width: 5px;
     border-color: blue;
 
 
 }
 
-#winnerMessage {
+#roundResult {
     border-style: solid;
-    border-width: 1px;
+    border-width: 5px;
+    border-color: yellow;    
+    background-color: #4d4344;
+    font-size: 40px;
+    color: #c49958;
+
+}
+
+#winGame {
+    border-style: solid;
+    border-width: 5px;
     border-color: green;
+    font-size: 50px;
+    background-color: #4d4344;
+    color: #c49958;
 
 
 }
+
+#playAgain {
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;  
+    background-color: #230b05;
+    color: aliceblue;
+    font-size: 40px;
+    margin: 0 auto;
+}
+
+#playAgain:hover {opacity:1;}
 
 

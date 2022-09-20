@@ -20,140 +20,142 @@
         </div>
 
         <div id="playerOptions">
-            <button id="playerRock">Rock</button>
-            <button id="playerPaper">Paper</button>
-            <button id="playerScissors">Scissors</button>
+            <button id="playerRock" class="image"><img src="rock.png"></button>
+            <button id="playerPaper" class="image"><img src="paper.png"></button>
+            <button id="playerScissors" class="image"><img src="scissors.png"></button>
         </div>
-
-        <div id="winnerMessage"></div>
+        <div id="roundResult">
+            <span id="roundMessage"></span>
+            <span id="roundWinner"></span>
+        </div>
+        <div id="winGame"></div>
+        <button id="playAgain">Play Again?</button>
     </div>
 </body>
 
 <script>
-
-    const playerRock = document.querySelector('#playerRock');                           //click events for each button
+/*onclick="window.location.reload();"*/
+    const playerRock = document.querySelector('#playerRock');                 //click events for each button
         playerRock.addEventListener("click", function(){playRound('rock'); updateScore();});
     const playerPaper = document.querySelector('#playerPaper');
         playerPaper.addEventListener("click", function(){playRound('paper'); updateScore();});
     const playerScissors = document.querySelector('#playerScissors');
         playerScissors.addEventListener("click", function(){playRound('scissors'); updateScore();});
+    const playerOptions = document.querySelector('#playerOptions');
 
+    let roundMessage = document.querySelector('#roundMessage');
+    let roundWinner = document.querySelector('#roundWinner');
+    let roundResult = document.querySelector('#roundResult');
     
 function computerChoice () {     //function for random computer choice
-    let randomNum = Math.floor(Math.random()*3);
+    let randomNum = Math.floor(Math.random()*3);    //select a random number between 0 and 2 rounded
     let compChoice;
-    if (randomNum == 0) {
+    if (randomNum == 0) {               //select rock, paper, scissors based on number.
         compChoice = 'rock';
     } else if (randomNum == 1){
         compChoice = 'paper';
     } else {
         compChoice = 'scissors';
     }
-    return compChoice;
+    console.log(compChoice);
+    return compChoice;              //return value
 }
 
-
 function rockPaperScissors(playerChoice) {     //function for rock, paper, scissors game
-    let compChoice = computerChoice();
-
-    let playerWin = 'playerWin';
+    let compChoice = computerChoice();          //takes comp choice from function
+    let playerWin = 'playerWin';                //takes player choice through buttons in html
     let computerWin = 'computerWin';
-    let tie = 'tie';
+    let tie = 'tie';                
 
 
-    if (playerChoice == 'rock') {
+    if (playerChoice == 'rock') {                  //compares player choice to compchoice
         if (compChoice =='paper'){
-            return computerWin;
+            return [computerWin, compChoice];       //returns winner and compchoice always in a list
         } else if (compChoice == 'scissors') {
-            return playerWin;
+            return [playerWin, compChoice];
         } else {
-            return tie;
+            return [tie, compChoice];
         }
     } else if (playerChoice == 'paper') {
         if (compChoice == 'scissors'){
-            return computerWin;
+            return [computerWin, compChoice];
         } else if (compChoice == 'rock') {
-            return playerWin;
+            return [playerWin, compChoice];
         } else {
-            return tie;
+            return [tie, compChoice];
         }
     } else {
         if (compChoice == 'rock'){
-            return computerWin;
+            return [computerWin, compChoice];
         } else if (compChoice == 'paper') {
-            return playerWin;
+            return [playerWin, compChoice];
         } else {
-            return tie;
+            return [tie, compChoice];
         }
     } 
 }
 
 
 
-let pScore = 0;
+let pScore = 0;                 //have scores stored in global
 let compScore = 0;
 
 
 function playRound(btnChoice) { //function to play a round
-    let playerChoice = btnChoice;
-    let result = rockPaperScissors(playerChoice);
-    if (result == 'playerWin') {
-        console.log('playerwin');
+    let playerChoice = btnChoice;                       //get player choice from button clicked
+    let resultsAndCP = rockPaperScissors(playerChoice);            
+    let result = resultsAndCP[0];                   //take winner from game
+    let compChoice = resultsAndCP[1];               //take compchoice from game
+    if (result == 'playerWin') {                    //return result based on winner
+        roundMessage.innerHTML = `Player chose ${playerChoice}, Computer chose ${compChoice}.`    
         pScore ++;
-        console.log(pScore);
+        roundWinner.innerHTML = `Player wins this round!`;
     } else if (result == 'computerWin') {
-        console.log('compwin');
+        roundMessage.innerHTML = `Player chose ${playerChoice}, Computer chose ${compChoice}.`
         compScore ++;
-        console.log(compScore);
-    } else {
-        console.log('tie');
+        roundWinner.innerHTML = `Computer wins this round!`;
+    } else if (result == 'tie') {
+        roundMessage.innerHTML = `Player chose ${playerChoice}, Computer chose ${compChoice}.`
+        roundWinner.innerHTML = `Tie!`
     }   
 }
 
-let winnerMessage = document.querySelector('#winnerMessage');
+let winGame = document.querySelector('#winGame');
 let intPlayer = document.querySelector('#intPlayer');
 let intComp = document.querySelector('#intComp');
 
-function updateScore() {
+function updateScore() {                            //update scores at top with global variable, declare winner at 5 wins
     intPlayer.innerHTML = pScore;
     intComp.innerHTML = compScore;
 
     if (pScore == 5) {
-        winnerMessage.innerHTML = 'Player Wins!'
+        winGame.innerHTML = `End Score is Player:${pScore} - Computer:${compScore}. Player Wins!`
+        intPlayer.innerHTML = 0;
+        intComp.innerHTML = 0;
+        playerOptions.style.display = 'none';
+        playAgain.style.display='block';
     } else if (compScore == 5) {
-        winnerMessage.innerHTML = 'Computer Wins!'
+        winGame.innerHTML = `End Score is Player:${pScore} - Computer:${compScore}. Computer Wins!`
+        intPlayer.innerHTML = 0;
+        intComp.innerHTML = 0;
+        playerOptions.style.display = 'none';
+        playAgain.style.display='block';
     }
 }
 
+let playAgain = document.querySelector('#playAgain');
+    playAgain.style.display='none';
 
-
-function gameScore(btnChoice) {
-
-
-    let result = playRound(btnChoice);
-    console.log(result);
-
-    for (let i=0; i<=4 ;i++) {
-        let result = rockPaperScissors()
-        if (result == 'playerWin') {
-            pScore ++;
-        } else if (result == 'computerWin') {
-            compScore ++;
-        }
-    }
-
-    if (pScore == 5) {
-        winnerMessage.innerHTML = "Player wins!";
-    } else if (compScore == 5) {
-        winnerMessage.innerHTML = "Computer wins!";
-    }
-}
-
-function totalScore() {
-    let totalScore = gameScore()
-
-}
-
+    playAgain.addEventListener('click', function (){
+    pScore=0; 
+    compScore=0; 
+    updateScore();
+    roundMessage.innerHTML = '';
+    roundWinner.innerHTML = '';
+    winGame.innerHTML = '';
+    playAgain.style.display = 'none';
+    playerOptions.style.display = 'block'; 
+    })
 
 </script>
 
